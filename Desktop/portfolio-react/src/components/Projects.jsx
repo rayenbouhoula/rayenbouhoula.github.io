@@ -16,8 +16,8 @@ const Projects = () => {
         { name: 'Flutter', icon:  <SiFlutter /> },
         { name: 'Firebase', icon: <SiFirebase /> },
       ],
-      github: 'https://github.com/rayenbouhoula/ecommerce-app',
-      demo: 'https://rayenbouhoula.github.io/ecommerce-app',
+      github: 'https://github.com/rayenbouhoula/Ecommerce-app',
+      demo: 'https://rayenbouhoula.github.io/Ecommerce-app',
       icon: '🛍️'
     },
     {
