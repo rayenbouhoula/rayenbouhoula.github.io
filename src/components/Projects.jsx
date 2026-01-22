@@ -10,46 +10,46 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce App',
+      title:  'E-Commerce App',
       description: 'A full-featured mobile e-commerce application built with Flutter and Firebase, featuring real-time inventory, secure payments, and user authentication.',
       tech: [
-        { name: 'Flutter', icon:  <SiFlutter /> },
+        { name: 'Flutter', icon: <SiFlutter /> },
         { name: 'Firebase', icon: <SiFirebase /> },
       ],
-      github: 'https://github.com/rayenbouhoula/Ecommerce-app',
-      demo: 'https://rayenbouhoula.github.io/Ecommerce-app',
+      github: 'https://github.com/rayenbouhoula/ecommerce-app',
+      demo: 'https://rayenbouhoula.github.io/ecommerce-app',
       icon: '🛍️'
     },
     {
       title: 'Task Manager',
       description: 'A modern task management web application with dark theme, drag-and-drop functionality, and local storage persistence built with React.',
       tech: [
-        { name: 'React', icon: <SiReact /> },
+        { name: 'React', icon:  <SiReact /> },
         { name: 'JavaScript', icon: <SiJavascript /> },
       ],
       github: 'https://github.com/rayenbouhoula/task-manager',
-      demo: 'https://rayenbouhoula.github.io/task-manager',
+      demo:  'https://rayenbouhoula.github.io/task-manager',
       icon: '✅'
     },
     {
       title: 'Weather Dashboard',
-      description: 'Real-time weather application with geolocation, 7-day forecast, and beautiful animations.  Integrated with OpenWeather API.',
+      description: 'Real-time weather application with geolocation, 7-day forecast, and beautiful animations. Integrated with OpenWeather API.',
       tech: [
         { name: 'React', icon: <SiReact /> },
         { name: 'JavaScript', icon: <SiJavascript /> },
       ],
       github: 'https://github.com/rayenbouhoula/weather-app',
       demo: 'https://rayenbouhoula.github.io/weather-app',
-      icon: '🌤️'
+      icon:  '🌤️'
     },
     {
-      title: 'Portfolio Website',
-      description: 'This modern, animated portfolio website built with React, Vite, and Framer Motion.  Features smooth animations and responsive design.',
+      title:  'Portfolio Website',
+      description: 'This modern, animated portfolio website built with React, Vite, and Framer Motion. Features smooth animations and responsive design.',
       tech: [
-        { name: 'React', icon: <SiReact /> },
-        { name: 'JavaScript', icon: <SiJavascript /> },
+        { name:  'React', icon: <SiReact /> },
+        { name: 'JavaScript', icon:  <SiJavascript /> },
       ],
-      github: 'https://github.com/rayenbouhoula/portfolio-react',
+      github:  'https://github.com/rayenbouhoula/portfolio-react',
       demo: 'https://rayenbouhoula.github.io/portfolio-react',
       icon: '💼'
     },
@@ -66,7 +66,7 @@ const Projects = () => {
   }
 
   const cardVariants = {
-    hidden:  { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 50 },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -101,7 +101,7 @@ const Projects = () => {
               variants={cardVariants}
             >
               <div className="project-image">
-                {project. icon}
+                {project.icon}
               </div>
               <div className="project-content">
                 <h3>{project.title}</h3>
@@ -123,7 +123,7 @@ const Projects = () => {
                   </a>
                 </div>
               </div>
-            </motion. div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
