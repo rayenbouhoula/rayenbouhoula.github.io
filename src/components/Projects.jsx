@@ -50,7 +50,7 @@ const Projects = () => {
         { name: 'Streamlit', icon: <SiStreamlit /> },
       ],
       github: 'https://github.com/rayenbouhoula/ATS-Scanner',
-      demo: 'https://rayenbouhoula.github.io/ATS-Scanner/', 
+      demo: 'https://ats--scanner.streamlit.app/', 
       icon: '💼'
     },
     {
