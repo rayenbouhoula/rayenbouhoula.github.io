@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { SiFlutter, SiFirebase, SiReact, SiJavascript } from 'react-icons/si'
+import { SiFlutter, SiFirebase, SiReact, SiJavascript, SiPython, SiStreamlit } from 'react-icons/si'
 
 const Projects = () => {
   const ref = useRef(null)
@@ -10,7 +10,18 @@ const Projects = () => {
 
   const projects = [
     {
-      title:  'E-Commerce App',
+      title: 'ATS Resume Scanner Pro',
+      description: 'AI-powered resume analyzer that helps optimize resumes for Applicant Tracking Systems. Features skill detection, job matching, visual analytics, and detailed optimization tips.',
+      tech: [
+        { name: 'Python', icon: <SiPython /> },
+        { name: 'Streamlit', icon: <SiStreamlit /> },
+      ],
+      github: 'https://github.com/rayenbouhoula/ATS-Scanner',
+      demo: 'https://github.com/rayenbouhoula/ATS-Scanner',
+      icon: '💼'
+    },
+    {
+      title: 'E-Commerce App',
       description: 'A full-featured mobile e-commerce application built with Flutter and Firebase, featuring real-time inventory, secure payments, and user authentication.',
       tech: [
         { name: 'Flutter', icon: <SiFlutter /> },
@@ -21,43 +32,43 @@ const Projects = () => {
       icon: '🛍️'
     },
     {
-      title: 'Task Manager',
-      description: 'A modern task management web application with dark theme, drag-and-drop functionality, and local storage persistence built with React.',
-      tech: [
-        { name: 'React', icon:  <SiReact /> },
-        { name: 'JavaScript', icon: <SiJavascript /> },
-      ],
-      github: 'https://github.com/rayenbouhoula/task-manager',
-      demo:  'https://rayenbouhoula.github.io/task-manager',
-      icon: '✅'
-    },
-    {
       title: 'Weather Dashboard',
-      description: 'Real-time weather application with geolocation, 7-day forecast, and beautiful animations. Integrated with OpenWeather API.',
+      description: 'Real-time weather application with geolocation, 7-day forecast, and beautiful animations. Integrated with Open-Meteo API for accurate weather data.',
       tech: [
         { name: 'React', icon: <SiReact /> },
         { name: 'JavaScript', icon: <SiJavascript /> },
       ],
       github: 'https://github.com/rayenbouhoula/weather-dashboard',
       demo: 'https://rayenbouhoula.github.io/weather-dashboard',
-      icon:  '🌤️'
+      icon: '🌤️'
     },
     {
-      title:  'Portfolio Website',
+      title: 'Task Manager',
+      description: 'A modern task management web application with dark theme, drag-and-drop functionality, and local storage persistence built with React.',
+      tech: [
+        { name: 'React', icon: <SiReact /> },
+        { name: 'JavaScript', icon: <SiJavascript /> },
+      ],
+      github: 'https://github.com/rayenbouhoula/task-manager',
+      demo: 'https://rayenbouhoula.github.io/task-manager',
+      icon: '✅'
+    },
+    {
+      title: 'Portfolio Website',
       description: 'This modern, animated portfolio website built with React, Vite, and Framer Motion. Features smooth animations and responsive design.',
       tech: [
-        { name:  'React', icon: <SiReact /> },
-        { name: 'JavaScript', icon:  <SiJavascript /> },
+        { name: 'React', icon: <SiReact /> },
+        { name: 'JavaScript', icon: <SiJavascript /> },
       ],
-      github:  'https://github.com/rayenbouhoula/portfolio-react',
+      github: 'https://github.com/rayenbouhoula/portfolio-react',
       demo: 'https://rayenbouhoula.github.io/',
-      icon: '💼'
+      icon: '🌐'
     },
   ]
 
   const containerVariants = {
-    hidden: { opacity:  0 },
-    visible:  {
+    hidden: { opacity: 0 },
+    visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.2
@@ -82,17 +93,17 @@ const Projects = () => {
         <motion.h2 
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ?  { opacity: 1, y:  0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           Projects
         </motion.h2>
         
-        <motion. div 
+        <motion.div 
           className="projects-grid"
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ?  "visible" : "hidden"}
+          animate={isInView ? "visible" : "hidden"}
         >
           {projects.map((project, index) => (
             <motion.div 
@@ -109,7 +120,7 @@ const Projects = () => {
                 <div className="project-tech">
                   {project.tech.map((tech, techIndex) => (
                     <div key={techIndex} className="tech-tag">
-                      {tech. icon}
+                      {tech.icon}
                       <span>{tech.name}</span>
                     </div>
                   ))}
