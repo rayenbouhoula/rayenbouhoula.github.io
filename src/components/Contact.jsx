@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone } from 'react-icons/fa'
 import { socialLinks, contactInfo } from '../config'
+import ContactForm from './ContactForm'
 
 const Contact = () => {
   const ref = useRef(null)
@@ -30,6 +31,12 @@ const Contact = () => {
             I'm currently looking for new opportunities and my inbox is always open. 
             Whether you have a question or just want to say hi, I'll try my best to get back to you! 
           </p>
+          
+          <ContactForm />
+          
+          <div className="contact-divider">
+            <span>Or reach me directly</span>
+          </div>
           
           <div className="contact-info">
             <a href={socialLinks.email}>

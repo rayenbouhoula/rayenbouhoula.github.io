@@ -1,10 +1,33 @@
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaDownload, FaEye } from 'react-icons/fa'
+import { TypeAnimation } from 'react-type-animation'
+import { useState } from 'react'
 import { socialLinks, personalInfo } from '../config'
+import { useSound } from '../context/SoundContext'
+import ParticlesBackground from './ParticlesBackground'
 
 const Hero = () => {
+  const [showCVModal, setShowCVModal] = useState(false)
+  const { playSound } = useSound()
+
+  const handleCVDownload = () => {
+    playSound('click')
+    const link = document.createElement('a')
+    link.href = '/cv/Rayen_Bouhoula_CV.pdf'
+    link.download = 'Rayen_Bouhoula_CV.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const handleCVPreview = () => {
+    playSound('click')
+    setShowCVModal(true)
+  }
+
   return (
     <section className="hero" id="home">
+      <ParticlesBackground />
       <motion.div 
         className="hero-content"
         initial={{ opacity: 0, y: 50 }}
@@ -24,7 +47,19 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          {personalInfo.title}
+          <TypeAnimation
+            sequence={[
+              'Software Engineering Student | Application & Web Developer',
+              2000,
+              'Software Engineering Student | Flutter Developer',
+              2000,
+              'Software Engineering Student | Full Stack Developer',
+              2000,
+            ]}
+            wrapper="span"
+            speed={50}
+            repeat={Infinity}
+          />
         </motion.h2>
         
         <motion.p
@@ -42,6 +77,9 @@ const Hero = () => {
           transition={{ delay: 0.8, duration: 0.8 }}
         >
           <a href="#projects" className="btn btn-primary">View Projects</a>
+          <button onClick={handleCVDownload} className="btn btn-secondary">
+            <FaDownload /> Download CV
+          </button>
           <a href="#contact" className="btn btn-secondary">Contact Me</a>
         </motion.div>
         
@@ -65,6 +103,31 @@ const Hero = () => {
           </a>
         </motion.div>
       </motion.div>
+
+      {/* CV Preview Modal */}
+      {showCVModal && (
+        <motion.div 
+          className="cv-modal-backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setShowCVModal(false)}
+        >
+          <motion.div 
+            className="cv-modal"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="cv-modal-close" onClick={() => setShowCVModal(false)}>×</button>
+            <iframe 
+              src="/cv/Rayen_Bouhoula_CV.pdf" 
+              title="CV Preview"
+              width="100%"
+              height="100%"
+            />
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   )
 }
