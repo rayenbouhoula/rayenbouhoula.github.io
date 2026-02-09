@@ -1091,3 +1091,149 @@
     scroll-behavior: smooth;
   }
 }
+/* Mobile Menu Button - HIGHLY VISIBLE */
+.mobile-menu-button {
+  display: none;
+  background: transparent;
+  border: 2px solid var(--accent);
+  padding: 12px;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 217, 255, 0.1);
+}
+
+.mobile-menu-button:hover {
+  background: rgba(0, 217, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+/* Backdrop Overlay */
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 998;
+}
+
+/* Mobile Menu Panel */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 80vw;
+  background: var(--bg-secondary);
+  border-left: 2px solid var(--accent);
+  z-index: 999;
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mobile-nav a {
+  color: var(--text-primary);
+  font-size: 18px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-align: left;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a:active {
+  background: var(--bg-card);
+  border-left-color: var(--accent);
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+/* GitHub Stats Fixes */
+.github-stats {
+  background: var(--bg-secondary);
+  padding: 80px 20px;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+  border-color: var(--accent);
+}
+
+.stat-card-wide {
+  grid-column: 1 / -1;
+}
+
+.stat-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.stat-loading {
+  color: var(--text-secondary);
+  font-size: 16px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.github-link-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Show mobile menu button on small screens */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
