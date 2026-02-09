@@ -28,7 +28,22 @@ const AppContent = () => {
       
       <nav className="navbar">
         <div className="navbar-content">
-          <div className="logo">RB</div>
+          <div className="logo">
+            <button 
+             onClick={() => window.location.reload()} 
+             style={{
+             background: 'none',
+             border: 'none',
+             color: 'inherit',
+             fontSize: '1.5rem',
+             fontWeight: 'bold',
+             cursor: 'pointer'
+              }}
+             >
+             RB
+            </button>
+          </div>
+
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
