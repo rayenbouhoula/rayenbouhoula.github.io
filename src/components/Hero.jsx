@@ -120,7 +120,7 @@ const Hero = () => {
           >
             <button className="cv-modal-close" onClick={() => setShowCVModal(false)}>×</button>
             <iframe 
-              src="/cv/Rayen_Bouhoula_CV.pdf" 
+              src="C:\Users\MAISON INFO\Desktop\portfolio-react\public\cv\RayenBouhoula1.pdf" 
               title="CV Preview"
               width="100%"
               height="100%"
