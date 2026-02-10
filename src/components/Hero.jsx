@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaDownload, FaEye } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaDownload } from 'react-icons/fa'
 import { TypeAnimation } from 'react-type-animation'
 import { useState } from 'react'
 import { socialLinks, personalInfo } from '../config'
@@ -10,11 +10,13 @@ const Hero = () => {
   const [showCVModal, setShowCVModal] = useState(false)
   const { playSound } = useSound()
 
+  const CV_URL = `${import.meta.env.BASE_URL}cv/RayenBouhoula1.pdf`
+
   const handleCVDownload = () => {
     playSound('click')
     const link = document.createElement('a')
-    link.href = '/cv/Rayen_Bouhoula_CV.pdf'
-    link.download = 'Rayen_Bouhoula_CV.pdf'
+    link.href = CV_URL
+    link.download = 'RayenBouhoula1.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -28,20 +30,21 @@ const Hero = () => {
   return (
     <section className="hero" id="home">
       <ParticlesBackground />
-      <motion.div 
+
+      <motion.div
         className="hero-content"
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity:  1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y:  0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
           {personalInfo.name}
         </motion.h1>
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,7 +64,7 @@ const Hero = () => {
             repeat={Infinity}
           />
         </motion.h2>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,27 +72,37 @@ const Hero = () => {
         >
           {personalInfo.description}
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="hero-buttons"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity:  1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <a href="#projects" className="btn btn-primary">View Projects</a>
+          <a href="#projects" className="btn btn-primary">
+            View Projects
+          </a>
+
           <button onClick={handleCVDownload} className="btn btn-secondary">
             <FaDownload /> Download CV
           </button>
-          <a href="#contact" className="btn btn-secondary">Contact Me</a>
+
+          <button onClick={handleCVPreview} className="btn btn-secondary">
+            Preview CV
+          </button>
+
+          <a href="#contact" className="btn btn-secondary">
+            Contact Me
+          </a>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="social-links"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <a href={socialLinks. github} target="_blank" rel="noopener noreferrer">
+          <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
           <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
@@ -106,21 +119,27 @@ const Hero = () => {
 
       {/* CV Preview Modal */}
       {showCVModal && (
-        <motion.div 
+        <motion.div
           className="cv-modal-backdrop"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setShowCVModal(false)}
         >
-          <motion.div 
+          <motion.div
             className="cv-modal"
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="cv-modal-close" onClick={() => setShowCVModal(false)}>×</button>
-            <iframe 
-              src="C:\Users\MAISON INFO\Desktop\portfolio-react\public\cv\RayenBouhoula1.pdf" 
+            <button
+              className="cv-modal-close"
+              onClick={() => setShowCVModal(false)}
+            >
+              ×
+            </button>
+
+            <iframe
+              src={CV_URL}
               title="CV Preview"
               width="100%"
               height="100%"
