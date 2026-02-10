@@ -1510,3 +1510,153 @@
     font-size: 1.5rem;
   }
 }
+/* Light mode specific adjustments */
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .custom-cursor-dot,
+[data-theme="light"] .custom-cursor-outline {
+  mix-blend-mode: difference;
+}
+
+/* Light Mode - Achievements Section */
+[data-theme="light"] .achievements-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+[data-theme="light"] .achievements-section::before {
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+}
+
+[data-theme="light"] .achievements-timeline::before {
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(0, 217, 255, 0.3) 100%);
+}
+
+[data-theme="light"] .achievement-item {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+[data-theme="light"] .achievement-item:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .achievement-item::before {
+  border: 3px solid #f8f9fa;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.6);
+}
+
+[data-theme="light"] .achievement-content h3 {
+  background: linear-gradient(135deg, #00d9ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .achievement-org {
+  color: var(--accent);
+}
+
+[data-theme="light"] .achievement-date {
+  color: #6c757d;
+}
+
+[data-theme="light"] .achievement-desc {
+  color: #495057;
+}
+
+[data-theme="light"] .achievement-link {
+  color: var(--accent);
+}
+
+[data-theme="light"] .achievement-link:hover {
+  color: #0099cc;
+}
+
+/* Light Mode - GitHub Stats Section */
+[data-theme="light"] .github-stats {
+  background: #ffffff;
+}
+
+[data-theme="light"] .stat-box {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+[data-theme="light"] .stat-box:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .stat-icon {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+[data-theme="light"] .stat-info h3 {
+  color: #212529;
+}
+
+[data-theme="light"] .stat-info p {
+  color: #6c757d;
+}
+
+[data-theme="light"] .subsection-title {
+  color: var(--accent);
+}
+
+[data-theme="light"] .language-item {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+[data-theme="light"] .language-item:hover {
+  background: #ffffff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .language-name {
+  color: #212529;
+}
+
+[data-theme="light"] .language-count {
+  color: #6c757d;
+}
+
+[data-theme="light"] .language-bar {
+  background: #e9ecef;
+}
+
+[data-theme="light"] .repo-card {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #212529;
+}
+
+[data-theme="light"] .repo-card:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .repo-card h4 {
+  color: var(--accent);
+}
+
+[data-theme="light"] .repo-card p {
+  color: #495057;
+}
+
+[data-theme="light"] .repo-language,
+[data-theme="light"] .repo-stat {
+  color: #6c757d;
+}
+
+[data-theme="light"] .stat-loading p,
+[data-theme="light"] .stat-error p {
+  color: #495057;
+}
