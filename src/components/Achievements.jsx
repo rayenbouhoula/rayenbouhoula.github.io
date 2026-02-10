@@ -7,7 +7,8 @@ const Achievements = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
-  const achievements = [
+  // Using 'myAchievements' to avoid naming conflicts
+  const myAchievements = [
     {
       title: 'Scientific Baccalaureate',
       organization: 'Ministry of Education (Tunisia)',
@@ -42,7 +43,7 @@ const Achievements = () => {
     },
     {
       title: 'Full Stack Development',
-      organization: 'Self-Taught & Projects',
+      organization: 'Self-Taught & Projects in university',
       date: '2023 - Present',
       description: 'Mastered React, Flutter, JavaScript, Python, and modern web technologies through hands-on projects',
       icon: <FaCode />,
@@ -98,23 +99,23 @@ const Achievements = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {achievements.map((achievement, index) => (
+          {myAchievements.map((item, index) => (
             <motion.div
               key={index}
-              className={`achievement-item ${achievement.type}`}
+              className={`achievement-item ${item.type}`}
               variants={itemVariants}
             >
               <div className="achievement-icon">
-                {achievement.icon}
+                {item.icon}
               </div>
               <div className="achievement-content">
-                <h3>{achievement.title}</h3>
-                <p className="achievement-org">{achievement.organization}</p>
-                <p className="achievement-date">{achievement.date}</p>
-                <p className="achievement-desc">{achievement.description}</p>
-                {achievement.link && (
+                <h3>{item.title}</h3>
+                <p className="achievement-org">{item.organization}</p>
+                <p className="achievement-date">{item.date}</p>
+                <p className="achievement-desc">{item.description}</p>
+                {item.link && (
                   <a
-                    href={achievement.link}
+                    href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="achievement-link"

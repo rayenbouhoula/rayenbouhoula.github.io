@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 const GitHubStats = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const [statsLoaded, setStatsLoaded] = useState(false)
+  const [langsLoaded, setLangsLoaded] = useState(false)
+  const [streakLoaded, setStreakLoaded] = useState(false)
 
   const username = 'rayenbouhoula'
   
@@ -34,31 +37,67 @@ const GitHubStats = () => {
         >
           {/* GitHub Stats Card */}
           <div className="stat-card">
+            {!statsLoaded && (
+              <div className="stat-loading">
+                <div className="spinner"></div>
+                <p>Loading stats...</p>
+              </div>
+            )}
             <img
               src={statsUrl}
               alt="GitHub Stats"
               loading="lazy"
-              style={{ width: '100%', height: 'auto' }}
+              onLoad={() => setStatsLoaded(true)}
+              onError={() => setStatsLoaded(true)}
+              style={{ 
+                width: '100%', 
+                height: 'auto',
+                display: statsLoaded ? 'block' : 'none'
+              }}
             />
           </div>
 
           {/* Top Languages Card */}
           <div className="stat-card">
+            {!langsLoaded && (
+              <div className="stat-loading">
+                <div className="spinner"></div>
+                <p>Loading languages...</p>
+              </div>
+            )}
             <img
               src={langsUrl}
               alt="Top Languages"
               loading="lazy"
-              style={{ width: '100%', height: 'auto' }}
+              onLoad={() => setLangsLoaded(true)}
+              onError={() => setLangsLoaded(true)}
+              style={{ 
+                width: '100%', 
+                height: 'auto',
+                display: langsLoaded ? 'block' : 'none'
+              }}
             />
           </div>
 
           {/* GitHub Streak Stats */}
           <div className="stat-card stat-card-wide">
+            {!streakLoaded && (
+              <div className="stat-loading">
+                <div className="spinner"></div>
+                <p>Loading streak...</p>
+              </div>
+            )}
             <img
               src={streakUrl}
               alt="GitHub Streak"
               loading="lazy"
-              style={{ width: '100%', height: 'auto' }}
+              onLoad={() => setStreakLoaded(true)}
+              onError={() => setStreakLoaded(true)}
+              style={{ 
+                width: '100%', 
+                height: 'auto',
+                display: streakLoaded ? 'block' : 'none'
+              }}
             />
           </div>
         </motion.div>
