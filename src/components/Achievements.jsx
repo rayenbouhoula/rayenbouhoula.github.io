@@ -7,11 +7,8 @@ const Achievements = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
-  // Add this debug line
-  console.log('Achievements component rendered')
-
   const achievements = [
-  {
+    {
       title: 'Scientific Baccalaureate',
       organization: 'Ministry of Education (Tunisia)',
       date: 'June 2023',
@@ -21,7 +18,7 @@ const Achievements = () => {
     },
     {
       title: 'Software Engineering Student',
-      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL', // You can update this with your current university
+      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL',
       date: '2023 - Present',
       description: 'Pursuing degree in Software Engineering with specialization in mobile and web development',
       icon: <FaGraduationCap />,
@@ -61,12 +58,31 @@ const Achievements = () => {
       link: 'https://github.com/rayenbouhoula'
     }
   ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  }
+
   return (
-    <section className="achievements" id="achievements" ref={ref}>
+    <section className="achievements-section" id="achievements" ref={ref}>
       <div className="container">
-        {/* Add this debug heading */}
-        <p style={{ color: 'red', fontSize: '12px' }}>DEBUG: Achievement Section #{Math.random()}</p>
-        
         <motion.h2
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +92,40 @@ const Achievements = () => {
           Achievements & Certifications
         </motion.h2>
 
-        {/* rest of your code */}
+        <motion.div
+          className="achievements-timeline"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={index}
+              className={`achievement-item ${achievement.type}`}
+              variants={itemVariants}
+            >
+              <div className="achievement-icon">
+                {achievement.icon}
+              </div>
+              <div className="achievement-content">
+                <h3>{achievement.title}</h3>
+                <p className="achievement-org">{achievement.organization}</p>
+                <p className="achievement-date">{achievement.date}</p>
+                <p className="achievement-desc">{achievement.description}</p>
+                {achievement.link && (
+                  <a
+                    href={achievement.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="achievement-link"
+                  >
+                    View Details →
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
