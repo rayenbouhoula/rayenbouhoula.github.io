@@ -26,9 +26,20 @@ const GitHubStats = () => {
         const userRes = await fetch(`https://api.github.com/users/${username}`)
         const userData = await userRes.json()
 
+        // Check if user data is valid
+        if (!userData || userData.message) {
+          throw new Error('Failed to fetch user data')
+        }
+
         // Fetch repos
         const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
         const reposData = await reposRes.json()
+
+        // ✅ CHECK IF REPOSDATA IS AN ARRAY
+        if (!Array.isArray(reposData)) {
+          console.error('GitHub API Error:', reposData)
+          throw new Error('Failed to fetch repositories')
+        }
 
         // Calculate stats
         const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0)
