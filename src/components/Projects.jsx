@@ -3,10 +3,11 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { SiFlutter, SiFirebase, SiReact, SiJavascript, SiPython, SiStreamlit } from 'react-icons/si'
-
+import { useSound } from '../context/SoundContext'
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  const { playSound } = useSound()
 
   const projects = [
     {
@@ -125,7 +126,6 @@ const Projects = () => {
                     </div>
                   ))}
                 </div>
-                // In the project card, find the links section:
 <div className="project-links">
   <a
     href={project.github}
