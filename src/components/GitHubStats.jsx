@@ -1,109 +1,87 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
+import { FaGraduationCap, FaCertificate, FaTrophy, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa'
 
-const GitHubStats = () => {
+const Achievements = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-  const [statsStatus, setStatsStatus] = useState('loading')
-  const [langsStatus, setLangsStatus] = useState('loading')
-  const [streakStatus, setStreakStatus] = useState('loading')
-  const [retryCount, setRetryCount] = useState(0)
 
-  const username = 'rayenbouhoula'
-  
-  // Alternative deployments of github-readme-stats
-  const statsUrls = [
-    `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`,
-    `https://github-readme-stats-sigma-five.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`,
-    `https://gh-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`
+  const achievements = [
+    {
+      title: 'Scientific Baccalaureate',
+      organization: 'Ministry of Education (Tunisia)',
+      date: 'June 2023',
+      description: 'Successfully completed Scientific Baccalaureate with focus on mathematics and sciences',
+      icon: <FaGraduationCap />,
+      type: 'education'
+    },
+    {
+      title: 'Software Engineering Student',
+      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL', // You can update this with your current university
+      date: '2023 - Present',
+      description: 'Pursuing degree in Software Engineering with specialization in mobile and web development',
+      icon: <FaGraduationCap />,
+      type: 'education'
+    },
+    {
+      title: 'Project Management and Entrepreneurship Workshop',
+      organization: 'YALD Association (Youth Leaders Network)',
+      date: '2024',
+      description: 'Participated in intensive training workshop on project management methodologies and entrepreneurship fundamentals',
+      icon: <FaLightbulb />,
+      type: 'certification'
+    },
+    {
+      title: 'The Zone Course – Business Soft Skills',
+      organization: 'EPI - International Multidisciplinary School',
+      date: '2024',
+      description: 'Completed practical training on essential business soft skills including communication, teamwork, and professional development',
+      icon: <FaUsers />,
+      type: 'certification'
+    },
+    {
+      title: 'Full Stack Development',
+      organization: 'Self-Taught & Projects',
+      date: '2023 - Present',
+      description: 'Mastered React, Flutter, JavaScript, Python, and modern web technologies through hands-on projects',
+      icon: <FaCode />,
+      type: 'achievement'
+    },
+    {
+      title: 'Open Source Contributor',
+      organization: 'GitHub',
+      date: 'Ongoing',
+      description: 'Active contributor with multiple public repositories including portfolio, task manager, and weather applications',
+      icon: <FaTrophy />,
+      type: 'achievement',
+      link: 'https://github.com/rayenbouhoula'
+    }
   ]
-  
-  const langsUrls = [
-    `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`,
-    `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`,
-    `https://gh-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
-  ]
 
-  const streakUrl = `https://streak-stats.demolab.com/?user=${username}&theme=radical&hide_border=true&background=0a0a0a&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`
-
-  const [currentStatsUrl, setCurrentStatsUrl] = useState(statsUrls[0])
-  const [currentLangsUrl, setCurrentLangsUrl] = useState(langsUrls[0])
-
-  // Try to load stats with retry logic
-  useEffect(() => {
-    if (!isInView || statsStatus !== 'loading') return
-
-    const img = new Image()
-    const timeout = setTimeout(() => {
-      console.log('Stats loading timeout, trying alternative...')
-      if (retryCount < statsUrls.length - 1) {
-        setRetryCount(retryCount + 1)
-        setCurrentStatsUrl(statsUrls[retryCount + 1])
-      } else {
-        setStatsStatus('error')
-      }
-    }, 5000)
-
-    img.onload = () => {
-      console.log('Stats loaded successfully')
-      clearTimeout(timeout)
-      setStatsStatus('loaded')
-    }
-
-    img.onerror = () => {
-      console.error('Stats failed to load')
-      clearTimeout(timeout)
-      if (retryCount < statsUrls.length - 1) {
-        setRetryCount(retryCount + 1)
-        setCurrentStatsUrl(statsUrls[retryCount + 1])
-      } else {
-        setStatsStatus('error')
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
       }
     }
+  }
 
-    img.src = currentStatsUrl
-
-    return () => clearTimeout(timeout)
-  }, [isInView, currentStatsUrl, statsStatus, retryCount, statsUrls])
-
-  // Try to load languages
-  useEffect(() => {
-    if (!isInView || langsStatus !== 'loading') return
-
-    const img = new Image()
-    const timeout = setTimeout(() => {
-      console.log('Languages loading timeout, trying alternative...')
-      if (retryCount < langsUrls.length - 1) {
-        setCurrentLangsUrl(langsUrls[retryCount + 1])
-      } else {
-        setLangsStatus('error')
-      }
-    }, 5000)
-
-    img.onload = () => {
-      console.log('Languages loaded successfully')
-      clearTimeout(timeout)
-      setLangsStatus('loaded')
-    }
-
-    img.onerror = () => {
-      console.error('Languages failed to load')
-      clearTimeout(timeout)
-      if (retryCount < langsUrls.length - 1) {
-        setCurrentLangsUrl(langsUrls[retryCount + 1])
-      } else {
-        setLangsStatus('error')
+  const itemVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6
       }
     }
-
-    img.src = currentLangsUrl
-
-    return () => clearTimeout(timeout)
-  }, [isInView, currentLangsUrl, langsStatus, retryCount, langsUrls])
+  }
 
   return (
-    <section className="github-stats" id="github-stats" ref={ref}>
+    <section className="achievements" id="achievements" ref={ref}>
       <div className="container">
         <motion.h2
           className="section-title"
@@ -111,134 +89,46 @@ const GitHubStats = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          GitHub Statistics
+          Achievements & Certifications
         </motion.h2>
 
         <motion.div
-          className="stats-container"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          className="achievements-timeline"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
-          {/* GitHub Stats Card */}
-          <div className="stat-card">
-            {statsStatus === 'loading' && (
-              <div className="stat-loading">
-                <div className="spinner"></div>
-                <p>Loading stats...</p>
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={index}
+              className={`achievement-item ${achievement.type}`}
+              variants={itemVariants}
+            >
+              <div className="achievement-icon">
+                {achievement.icon}
               </div>
-            )}
-            {statsStatus === 'error' ? (
-              <div className="stat-error">
-                <p>Stats temporarily unavailable</p>
-                <a 
-                  href={`https://github.com/${username}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="stat-fallback-link"
-                >
-                  View on GitHub
-                </a>
+              <div className="achievement-content">
+                <h3>{achievement.title}</h3>
+                <p className="achievement-org">{achievement.organization}</p>
+                <p className="achievement-date">{achievement.date}</p>
+                <p className="achievement-desc">{achievement.description}</p>
+                {achievement.link && (
+                  <a
+                    href={achievement.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="achievement-link"
+                  >
+                    View Details →
+                  </a>
+                )}
               </div>
-            ) : (
-              <img
-                src={currentStatsUrl}
-                alt="GitHub Stats"
-                style={{ 
-                  display: statsStatus === 'loaded' ? 'block' : 'none',
-                  width: '100%',
-                  height: 'auto'
-                }}
-              />
-            )}
-          </div>
-
-          {/* Top Languages Card */}
-          <div className="stat-card">
-            {langsStatus === 'loading' && (
-              <div className="stat-loading">
-                <div className="spinner"></div>
-                <p>Loading languages...</p>
-              </div>
-            )}
-            {langsStatus === 'error' ? (
-              <div className="stat-error">
-                <p>Languages temporarily unavailable</p>
-                <a 
-                  href={`https://github.com/${username}?tab=repositories`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="stat-fallback-link"
-                >
-                  View Repositories
-                </a>
-              </div>
-            ) : (
-              <img
-                src={currentLangsUrl}
-                alt="Top Languages"
-                style={{ 
-                  display: langsStatus === 'loaded' ? 'block' : 'none',
-                  width: '100%',
-                  height: 'auto'
-                }}
-              />
-            )}
-          </div>
-
-          {/* GitHub Streak Stats */}
-          <div className="stat-card stat-card-wide">
-            {streakStatus === 'loading' && (
-              <div className="stat-loading">
-                <div className="spinner"></div>
-                <p>Loading streak...</p>
-              </div>
-            )}
-            <img
-              src={streakUrl}
-              alt="GitHub Streak"
-              onLoad={() => setStreakStatus('loaded')}
-              onError={() => setStreakStatus('error')}
-              style={{ 
-                display: streakStatus === 'loaded' ? 'block' : 'none',
-                width: '100%',
-                height: 'auto'
-              }}
-            />
-            {streakStatus === 'error' && (
-              <div className="stat-error">
-                <p>Streak stats temporarily unavailable</p>
-                <a 
-                  href={`https://github.com/${username}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="stat-fallback-link"
-                >
-                  View Activity
-                </a>
-              </div>
-            )}
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="github-link-container"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          <a
-            href="https://github.com/rayenbouhoula"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            View GitHub Profile
-          </a>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   )
 }
 
-export default GitHubStats
+export default Achievements
