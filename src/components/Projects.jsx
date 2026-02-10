@@ -125,14 +125,29 @@ const Projects = () => {
                     </div>
                   ))}
                 </div>
-                <div className="project-links">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                    <FaGithub /> GitHub
-                  </a>
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                    <FaExternalLinkAlt /> Live Demo
-                  </a>
-                </div>
+                // In the project card, find the links section:
+<div className="project-links">
+  <a
+    href={project.github}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="btn btn-secondary"
+    onClick={() => playSound('click')}
+  >
+    <FaGithub /> Code
+  </a>
+  {project.demo && (
+    <a
+      href={project.demo}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="btn btn-primary"
+      onClick={() => playSound('click')}
+    >
+      <FaExternalLinkAlt /> Demo
+    </a>
+  )}
+</div>
               </div>
             </motion.div>
           ))}

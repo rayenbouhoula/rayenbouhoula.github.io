@@ -73,28 +73,48 @@ const Hero = () => {
           {personalInfo.description}
         </motion.p>
 
-        <motion.div
-          className="hero-buttons"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          <a href="#projects" className="btn btn-primary">
-            View Projects
-          </a>
+       <motion.div
+  className="hero-buttons"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.8, duration: 0.8 }}
+>
+  <a 
+    href="#projects" 
+    className="btn btn-primary"
+    onClick={() => playSound('click')}
+  >
+    View Projects
+  </a>
 
-          <button onClick={handleCVDownload} className="btn btn-secondary">
-            <FaDownload /> Download CV
-          </button>
+  <button 
+    onClick={() => {
+      playSound('click')
+      handleCVDownload()
+    }} 
+    className="btn btn-secondary"
+  >
+    <FaDownload /> Download CV
+  </button>
 
-          <button onClick={handleCVPreview} className="btn btn-secondary">
-            Preview CV
-          </button>
+  <button 
+    onClick={() => {
+      playSound('click')
+      handleCVPreview()
+    }} 
+    className="btn btn-secondary"
+  >
+    Preview CV
+  </button>
 
-          <a href="#contact" className="btn btn-secondary">
-            Contact Me
-          </a>
-        </motion.div>
+  <a 
+    href="#contact" 
+    className="btn btn-secondary"
+    onClick={() => playSound('click')}
+  >
+    Contact Me
+  </a>
+</motion.div>
 
         <motion.div
           className="social-links"

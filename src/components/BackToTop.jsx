@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { FaArrowUp } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useSound } from '../context/SoundContext'
 
 const BackToTop = () => {
@@ -9,7 +9,11 @@ const BackToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      setIsVisible(window.pageYOffset > 300)
+      if (window.pageYOffset > 300) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
     }
 
     window.addEventListener('scroll', toggleVisibility)
