@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import { FaPaperPlane, FaUser, FaEnvelope, FaComment } from 'react-icons/fa'
 import { useSound } from '../context/SoundContext'
 
@@ -61,18 +62,30 @@ const ContactForm = () => {
     setSubmitStatus(null)
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Replace these with your EmailJS credentials
+      const result = await emailjs.send(
+        'service_ngptjf7',     
+        'template_5qndnz6',   
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'rayenbouhoula578@gmail.com'
+        },
+        'E1w59lYMQJMh9Pw3U'   
+      )
       
+      console.log('Email sent successfully:', result)
       playSound('success')
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
       
       setTimeout(() => setSubmitStatus(null), 5000)
     } catch (error) {
+      console.error('Email send error:', error)
       playSound('error')
       setSubmitStatus('error')
-      console.error('Error sending email:', error)
     } finally {
       setIsSubmitting(false)
     }
@@ -159,7 +172,6 @@ const ContactForm = () => {
           type="submit"
           className="btn btn-primary submit-btn"
           disabled={isSubmitting}
-          onClick={() => playSound('click')}
         >
           {isSubmitting ? (
             <>
@@ -181,7 +193,7 @@ const ContactForm = () => {
 
         {submitStatus === 'error' && (
           <div className="status-message error">
-            ✗ Failed to send message. Please try again.
+            ✗ Failed to send message. Please try again or email me directly.
           </div>
         )}
       </form>
