@@ -1130,22 +1130,7 @@
   z-index: 998;
 }
 
-/* Mobile Menu Panel */
-.mobile-menu-panel {
-  position: fixed;
-  top: 0;                /* ensure it starts at the top */
-  right: 0;
-  bottom: 0;
-  width: 280px;
-  max-width: 80vw;
-  height: 100vh;         /* add this to cover full height */
-  background: var(--bg-secondary);
-  border-left: 2px solid var(--accent);
-  z-index: 1000;         /* slightly higher than before to overlap backdrop */
-  padding: 80px 20px 20px;
-  overflow-y: auto;
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
-}
+/* Mobile Menu Backdrop */
 .mobile-menu-backdrop {
   position: fixed;
   top: 0;
@@ -1153,7 +1138,37 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 999;  /* just below the panel */
+  z-index: 999;
+}
+
+/* Mobile Menu Panel */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 80vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  border-left: 2px solid var(--accent);
+  z-index: 1000;
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0, 217, 255, 0.3);
+}
+
+/* Optional: Add a glow effect to match the hero style */
+.mobile-menu-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 .mobile-nav {
   display: flex;
