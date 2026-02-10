@@ -1,25 +1,26 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
 
+// Pass the icon component, not JSX
 export const socialLinks = [
   {
     name: 'GitHub',
     url: 'https://github.com/rayenbouhoula',
-    icon: <FaGithub />
+    icon: FaGithub
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/rayen-bouhoula-4841812a9/',
-    icon: <FaLinkedin />
+    icon: FaLinkedin
   },
   {
     name: 'Twitter',
     url: 'https://x.com/rayen168038',
-    icon: <FaTwitter />
+    icon: FaTwitter
   },
   {
     name: 'Email',
     url: 'mailto:rayenbouhoula578@gmail.com',
-    icon: <FaEnvelope />
+    icon: FaEnvelope
   }
 ]
 
