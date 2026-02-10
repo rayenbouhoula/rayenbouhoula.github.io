@@ -1,87 +1,21 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { FaGraduationCap, FaTrophy, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa'
 
-const Achievements = () => {
+const GitHubStats = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
 
-  const achievements = [
-    {
-      title: 'Scientific Baccalaureate',
-      organization: 'Ministry of Education (Tunisia)',
-      date: 'June 2023',
-      description: 'Successfully completed Scientific Baccalaureate with focus on mathematics and sciences',
-      icon: <FaGraduationCap />,
-      type: 'education'
-    },
-    {
-      title: 'Software Engineering Student',
-      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL',
-      date: '2023 - Present',
-      description: 'Pursuing degree in Software Engineering with specialization in mobile and web development',
-      icon: <FaGraduationCap />,
-      type: 'education'
-    },
-    {
-      title: 'Project Management and Entrepreneurship Workshop',
-      organization: 'YALD Association (Youth Leaders Network)',
-      date: '2024',
-      description: 'Participated in intensive training workshop on project management methodologies and entrepreneurship fundamentals',
-      icon: <FaLightbulb />,
-      type: 'certification'
-    },
-    {
-      title: 'The Zone Course – Business Soft Skills',
-      organization: 'EPI - International Multidisciplinary School',
-      date: '2024',
-      description: 'Completed practical training on essential business soft skills including communication, teamwork, and professional development',
-      icon: <FaUsers />,
-      type: 'certification'
-    },
-    {
-      title: 'Full Stack Development',
-      organization: 'Self-Taught & Projects',
-      date: '2023 - Present',
-      description: 'Mastered React, Flutter, JavaScript, Python, and modern web technologies through hands-on projects',
-      icon: <FaCode />,
-      type: 'achievement'
-    },
-    {
-      title: 'Open Source Contributor',
-      organization: 'GitHub',
-      date: 'Ongoing',
-      description: 'Active contributor with multiple public repositories including portfolio, task manager, and weather applications',
-      icon: <FaTrophy />,
-      type: 'achievement',
-      link: 'https://github.com/rayenbouhoula'
-    }
-  ]
+  const username = 'rayenbouhoula'
+  
+  const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`
+  
+  const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  }
+  const streakUrl = `https://streak-stats.demolab.com/?user=${username}&theme=radical&hide_border=true&background=0a0a0a&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`
 
   return (
-    <section className="achievements-section" id="achievements" ref={ref}>
+    <section className="github-stats" id="github-stats" ref={ref}>
       <div className="container">
         <motion.h2
           className="section-title"
@@ -89,46 +23,64 @@ const Achievements = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Achievements & Certifications
+          GitHub Statistics
         </motion.h2>
 
         <motion.div
-          className="achievements-timeline"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          className="stats-container"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              className={`achievement-item ${achievement.type}`}
-              variants={itemVariants}
-            >
-              <div className="achievement-icon">
-                {achievement.icon}
-              </div>
-              <div className="achievement-content">
-                <h3>{achievement.title}</h3>
-                <p className="achievement-org">{achievement.organization}</p>
-                <p className="achievement-date">{achievement.date}</p>
-                <p className="achievement-desc">{achievement.description}</p>
-                {achievement.link && (
-                  <a
-                    href={achievement.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="achievement-link"
-                  >
-                    View Details →
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          ))}
+          {/* GitHub Stats Card */}
+          <div className="stat-card">
+            <img
+              src={statsUrl}
+              alt="GitHub Stats"
+              loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+
+          {/* Top Languages Card */}
+          <div className="stat-card">
+            <img
+              src={langsUrl}
+              alt="Top Languages"
+              loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+
+          {/* GitHub Streak Stats */}
+          <div className="stat-card stat-card-wide">
+            <img
+              src={streakUrl}
+              alt="GitHub Streak"
+              loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="github-link-container"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <a
+            href="https://github.com/rayenbouhoula"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            View GitHub Profile
+          </a>
         </motion.div>
       </div>
     </section>
   )
 }
 
-export default Achievements
+export default GitHubStats
