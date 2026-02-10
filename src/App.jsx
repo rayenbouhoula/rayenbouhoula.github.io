@@ -4,6 +4,7 @@ import { SoundProvider } from './context/SoundContext'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
+import Languages from './components/Languages'  // ← ADD THIS LINE
 import GitHubStats from './components/GitHubStats'
 import Achievements from './components/Achievements'
 import Projects from './components/Projects'
@@ -17,7 +18,7 @@ import MobileMenu from './components/MobileMenu'
 import CustomCursor from './components/CustomCursor'
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
 import { useSound } from './context/SoundContext'
-import Languages from './components/Languages'
+
 const AppContent = () => {
   const { isMuted, toggleMute } = useSound()
 
@@ -69,7 +70,7 @@ const AppContent = () => {
       <Hero />
       <About />
       <Skills />
-      <Languages />
+      <Languages />  {/* ← ADD THIS LINE */}
       <GitHubStats />
       <Achievements />
       <Projects />
