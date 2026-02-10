@@ -67,8 +67,8 @@ const ContactForm = () => {
         'service_ngptjf7',     
         'template_5qndnz6',   
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           subject: formData.subject,
           message: formData.message,
           to_email: 'rayenbouhoula578@gmail.com'
