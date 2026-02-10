@@ -1,14 +1,13 @@
-// src/components/GitHubStats.jsx
-
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 const GitHubStats = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [statsLoaded, setStatsLoaded] = useState(false)
   const [langsLoaded, setLangsLoaded] = useState(false)
+  const [streakLoaded, setStreakLoaded] = useState(false)
 
   const username = 'rayenbouhoula'
   
@@ -18,6 +17,36 @@ const GitHubStats = () => {
   const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
 
   const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=radical&hide_border=true&background=0a0a0a&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`
+
+  // Fallback timeout - hide loading after 10 seconds regardless
+  useEffect(() => {
+    const statsTimer = setTimeout(() => {
+      if (!statsLoaded) {
+        console.warn('Stats loading timeout - displaying anyway')
+        setStatsLoaded(true)
+      }
+    }, 10000)
+
+    const langsTimer = setTimeout(() => {
+      if (!langsLoaded) {
+        console.warn('Languages loading timeout - displaying anyway')
+        setLangsLoaded(true)
+      }
+    }, 10000)
+
+    const streakTimer = setTimeout(() => {
+      if (!streakLoaded) {
+        console.warn('Streak loading timeout - displaying anyway')
+        setStreakLoaded(true)
+      }
+    }, 10000)
+
+    return () => {
+      clearTimeout(statsTimer)
+      clearTimeout(langsTimer)
+      clearTimeout(streakTimer)
+    }
+  }, [statsLoaded, langsLoaded, streakLoaded])
 
   return (
     <section className="github-stats" id="github-stats" ref={ref}>
@@ -45,12 +74,18 @@ const GitHubStats = () => {
             <img
               src={statsUrl}
               alt="GitHub Stats"
+              loading="lazy"
               onLoad={() => setStatsLoaded(true)}
               onError={(e) => {
                 console.error('Failed to load GitHub stats')
+                setStatsLoaded(true) // Hide loading state even on error
                 e.target.style.display = 'none'
               }}
-              style={{ display: statsLoaded ? 'block' : 'none' }}
+              style={{ 
+                display: statsLoaded ? 'block' : 'none',
+                width: '100%',
+                height: 'auto'
+              }}
             />
           </div>
 
@@ -62,23 +97,40 @@ const GitHubStats = () => {
             <img
               src={langsUrl}
               alt="Top Languages"
+              loading="lazy"
               onLoad={() => setLangsLoaded(true)}
               onError={(e) => {
                 console.error('Failed to load top languages')
+                setLangsLoaded(true) // Hide loading state even on error
                 e.target.style.display = 'none'
               }}
-              style={{ display: langsLoaded ? 'block' : 'none' }}
+              style={{ 
+                display: langsLoaded ? 'block' : 'none',
+                width: '100%',
+                height: 'auto'
+              }}
             />
           </div>
 
           {/* GitHub Streak Stats */}
           <div className="stat-card stat-card-wide">
+            {!streakLoaded && (
+              <div className="stat-loading">Loading streak...</div>
+            )}
             <img
               src={streakUrl}
               alt="GitHub Streak"
+              loading="lazy"
+              onLoad={() => setStreakLoaded(true)}
               onError={(e) => {
                 console.error('Failed to load streak stats')
+                setStreakLoaded(true) // Hide loading state even on error
                 e.target.style.display = 'none'
+              }}
+              style={{ 
+                display: streakLoaded ? 'block' : 'none',
+                width: '100%',
+                height: 'auto'
               }}
             />
           </div>
