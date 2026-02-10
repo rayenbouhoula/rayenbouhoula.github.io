@@ -17,7 +17,7 @@ import MobileMenu from './components/MobileMenu'
 import CustomCursor from './components/CustomCursor'
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
 import { useSound } from './context/SoundContext'
-
+import Languages from './components/Languages'
 const AppContent = () => {
   const { isMuted, toggleMute } = useSound()
 
@@ -69,6 +69,7 @@ const AppContent = () => {
       <Hero />
       <About />
       <Skills />
+      <Languages />
       <GitHubStats />
       <Achievements />
       <Projects />

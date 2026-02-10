@@ -1660,3 +1660,220 @@
 [data-theme="light"] .stat-error p {
   color: #495057;
 }
+/* CV Modal - Enhanced with Download Button */
+.cv-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.cv-modal {
+  background: var(--bg-card);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.cv-modal-close:hover {
+  transform: rotate(90deg);
+  background: var(--accent-hover);
+}
+
+.cv-modal-actions {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+.cv-modal-actions .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+}
+
+.cv-modal iframe {
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  flex: 1;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .cv-modal {
+    width: 95%;
+    height: 85vh;
+  }
+
+  .cv-modal-actions .btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+/* Languages Section */
+.languages-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+}
+
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.language-card {
+  background: var(--bg-card);
+  padding: 35px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.language-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+  transform: translateY(-10px);
+}
+
+.language-header {
+  margin-bottom: 20px;
+}
+
+.language-header h3 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #00d9ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.language-level {
+  display: inline-block;
+  background: rgba(0, 217, 255, 0.1);
+  color: var(--accent);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.language-stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0;
+  font-size: 1.5rem;
+}
+
+.star-filled {
+  color: #ffd700;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+.star-empty {
+  color: var(--border);
+}
+
+.language-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* Light Mode - Languages */
+[data-theme="light"] .languages-section {
+  background: #f8f9fa;
+}
+
+[data-theme="light"] .language-card {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+}
+
+[data-theme="light"] .language-card:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .language-header h3 {
+  background: linear-gradient(135deg, #00d9ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .language-level {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+[data-theme="light"] .language-description {
+  color: #495057;
+}
+
+[data-theme="light"] .star-empty {
+  color: #dee2e6;
+}
+
+@media (max-width: 768px) {
+  .languages-section {
+    padding: 60px 20px;
+  }
+
+  .languages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .language-card {
+    padding: 25px;
+  }
+
+  .language-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .language-stars {
+    font-size: 1.3rem;
+  }
+}
