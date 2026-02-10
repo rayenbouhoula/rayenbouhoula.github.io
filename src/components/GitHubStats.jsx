@@ -8,74 +8,99 @@ const GitHubStats = () => {
   const [statsStatus, setStatsStatus] = useState('loading')
   const [langsStatus, setLangsStatus] = useState('loading')
   const [streakStatus, setStreakStatus] = useState('loading')
+  const [retryCount, setRetryCount] = useState(0)
 
   const username = 'rayenbouhoula'
   
-  // Try different approach - use direct image URLs without cache issues
-  const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`
+  // Alternative deployments of github-readme-stats
+  const statsUrls = [
+    `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`,
+    `https://github-readme-stats-sigma-five.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`,
+    `https://gh-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&icon_color=00d9ff&text_color=ffffff&count_private=true&include_all_commits=true`
+  ]
   
-  const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
+  const langsUrls = [
+    `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`,
+    `https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`,
+    `https://gh-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
+  ]
 
   const streakUrl = `https://streak-stats.demolab.com/?user=${username}&theme=radical&hide_border=true&background=0a0a0a&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`
 
-  // Preload images
-  useEffect(() => {
-    if (!isInView) return
+  const [currentStatsUrl, setCurrentStatsUrl] = useState(statsUrls[0])
+  const [currentLangsUrl, setCurrentLangsUrl] = useState(langsUrls[0])
 
-    // Preload stats image
-    const statsImg = new Image()
-    statsImg.onload = () => {
-      console.log('Stats image preloaded successfully')
+  // Try to load stats with retry logic
+  useEffect(() => {
+    if (!isInView || statsStatus !== 'loading') return
+
+    const img = new Image()
+    const timeout = setTimeout(() => {
+      console.log('Stats loading timeout, trying alternative...')
+      if (retryCount < statsUrls.length - 1) {
+        setRetryCount(retryCount + 1)
+        setCurrentStatsUrl(statsUrls[retryCount + 1])
+      } else {
+        setStatsStatus('error')
+      }
+    }, 5000)
+
+    img.onload = () => {
+      console.log('Stats loaded successfully')
+      clearTimeout(timeout)
       setStatsStatus('loaded')
     }
-    statsImg.onerror = (e) => {
-      console.error('Stats image failed to preload:', e)
-      setStatsStatus('error')
-    }
-    statsImg.src = statsUrl
 
-    // Preload langs image
-    const langsImg = new Image()
-    langsImg.onload = () => {
-      console.log('Languages image preloaded successfully')
-      setLangsStatus('loaded')
+    img.onerror = () => {
+      console.error('Stats failed to load')
+      clearTimeout(timeout)
+      if (retryCount < statsUrls.length - 1) {
+        setRetryCount(retryCount + 1)
+        setCurrentStatsUrl(statsUrls[retryCount + 1])
+      } else {
+        setStatsStatus('error')
+      }
     }
-    langsImg.onerror = (e) => {
-      console.error('Languages image failed to preload:', e)
-      setLangsStatus('error')
-    }
-    langsImg.src = langsUrl
 
-    // Preload streak image
-    const streakImg = new Image()
-    streakImg.onload = () => {
-      console.log('Streak image preloaded successfully')
-      setStreakStatus('loaded')
-    }
-    streakImg.onerror = (e) => {
-      console.error('Streak image failed to preload:', e)
-      setStreakStatus('error')
-    }
-    streakImg.src = streakUrl
-
-    // Timeout fallback
-    const timeout = setTimeout(() => {
-      if (statsStatus === 'loading') {
-        console.warn('Stats loading timeout - trying to display anyway')
-        setStatsStatus('loaded') // Try to display it anyway
-      }
-      if (langsStatus === 'loading') {
-        console.warn('Languages loading timeout - trying to display anyway')
-        setLangsStatus('loaded')
-      }
-      if (streakStatus === 'loading') {
-        console.warn('Streak loading timeout - trying to display anyway')
-        setStreakStatus('loaded')
-      }
-    }, 8000)
+    img.src = currentStatsUrl
 
     return () => clearTimeout(timeout)
-  }, [isInView, statsUrl, langsUrl, streakUrl, statsStatus, langsStatus, streakStatus])
+  }, [isInView, currentStatsUrl, statsStatus, retryCount, statsUrls])
+
+  // Try to load languages
+  useEffect(() => {
+    if (!isInView || langsStatus !== 'loading') return
+
+    const img = new Image()
+    const timeout = setTimeout(() => {
+      console.log('Languages loading timeout, trying alternative...')
+      if (retryCount < langsUrls.length - 1) {
+        setCurrentLangsUrl(langsUrls[retryCount + 1])
+      } else {
+        setLangsStatus('error')
+      }
+    }, 5000)
+
+    img.onload = () => {
+      console.log('Languages loaded successfully')
+      clearTimeout(timeout)
+      setLangsStatus('loaded')
+    }
+
+    img.onerror = () => {
+      console.error('Languages failed to load')
+      clearTimeout(timeout)
+      if (retryCount < langsUrls.length - 1) {
+        setCurrentLangsUrl(langsUrls[retryCount + 1])
+      } else {
+        setLangsStatus('error')
+      }
+    }
+
+    img.src = currentLangsUrl
+
+    return () => clearTimeout(timeout)
+  }, [isInView, currentLangsUrl, langsStatus, retryCount, langsUrls])
 
   return (
     <section className="github-stats" id="github-stats" ref={ref}>
@@ -117,9 +142,8 @@ const GitHubStats = () => {
               </div>
             ) : (
               <img
-                src={statsUrl}
+                src={currentStatsUrl}
                 alt="GitHub Stats"
-                crossOrigin="anonymous"
                 style={{ 
                   display: statsStatus === 'loaded' ? 'block' : 'none',
                   width: '100%',
@@ -151,9 +175,8 @@ const GitHubStats = () => {
               </div>
             ) : (
               <img
-                src={langsUrl}
+                src={currentLangsUrl}
                 alt="Top Languages"
-                crossOrigin="anonymous"
                 style={{ 
                   display: langsStatus === 'loaded' ? 'block' : 'none',
                   width: '100%',
@@ -171,7 +194,18 @@ const GitHubStats = () => {
                 <p>Loading streak...</p>
               </div>
             )}
-            {streakStatus === 'error' ? (
+            <img
+              src={streakUrl}
+              alt="GitHub Streak"
+              onLoad={() => setStreakStatus('loaded')}
+              onError={() => setStreakStatus('error')}
+              style={{ 
+                display: streakStatus === 'loaded' ? 'block' : 'none',
+                width: '100%',
+                height: 'auto'
+              }}
+            />
+            {streakStatus === 'error' && (
               <div className="stat-error">
                 <p>Streak stats temporarily unavailable</p>
                 <a 
@@ -183,17 +217,6 @@ const GitHubStats = () => {
                   View Activity
                 </a>
               </div>
-            ) : (
-              <img
-                src={streakUrl}
-                alt="GitHub Streak"
-                crossOrigin="anonymous"
-                style={{ 
-                  display: streakStatus === 'loaded' ? 'block' : 'none',
-                  width: '100%',
-                  height: 'auto'
-                }}
-              />
             )}
           </div>
         </motion.div>
