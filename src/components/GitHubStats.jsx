@@ -1,15 +1,10 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 const GitHubStats = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-  const [imageErrors, setImageErrors] = useState({
-    stats: false,
-    langs: false,
-    streak: false
-  })
 
   const username = 'rayenbouhoula'
   
@@ -18,10 +13,6 @@ const GitHubStats = () => {
   const langsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=radical&hide_border=true&bg_color=0a0a0a&title_color=00d9ff&text_color=ffffff&langs_count=8`
 
   const streakUrl = `https://streak-stats.demolab.com/?user=${username}&theme=radical&hide_border=true&background=0a0a0a&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`
-
-  const handleImageError = (type) => {
-    setImageErrors(prev => ({ ...prev, [type]: true }))
-  }
 
   return (
     <section className="github-stats" id="github-stats" ref={ref}>
@@ -41,30 +32,33 @@ const GitHubStats = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
+          {/* GitHub Stats Card */}
           <div className="stat-card">
             <img
               src={statsUrl}
               alt="GitHub Stats"
-              onError={() => handleImageError('stats')}
               loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
 
+          {/* Top Languages Card */}
           <div className="stat-card">
             <img
               src={langsUrl}
               alt="Top Languages"
-              onError={() => handleImageError('langs')}
               loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
 
+          {/* GitHub Streak Stats */}
           <div className="stat-card stat-card-wide">
             <img
               src={streakUrl}
               alt="GitHub Streak"
-              onError={() => handleImageError('streak')}
               loading="lazy"
+              style={{ width: '100%', height: 'auto' }}
             />
           </div>
         </motion.div>

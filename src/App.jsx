@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import GitHubStats from './components/GitHubStats'
+import Achievements from './components/Achievements'
 import Projects from './components/Projects'
 import Blog from './components/Blog'
 import Contact from './components/Contact'
@@ -69,6 +70,7 @@ const AppContent = () => {
       <About />
       <Skills />
       <GitHubStats />
+      <Achievements />
       <Projects />
       <Blog />
       <Contact />
