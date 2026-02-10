@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { FaGraduationCap, FaCertificate, FaTrophy, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa'
+import { FaGraduationCap, FaTrophy, FaCode, FaLightbulb, FaUsers } from 'react-icons/fa'
 
 const Achievements = () => {
   const ref = useRef(null)
@@ -18,7 +18,7 @@ const Achievements = () => {
     },
     {
       title: 'Software Engineering Student',
-      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL', // You can update this with your current university
+      organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL',
       date: '2023 - Present',
       description: 'Pursuing degree in Software Engineering with specialization in mobile and web development',
       icon: <FaGraduationCap />,
@@ -81,7 +81,7 @@ const Achievements = () => {
   }
 
   return (
-    <section className="achievements" id="achievements" ref={ref}>
+    <section className="achievements-section" id="achievements" ref={ref}>
       <div className="container">
         <motion.h2
           className="section-title"
