@@ -1133,19 +1133,28 @@
 /* Mobile Menu Panel */
 .mobile-menu-panel {
   position: fixed;
-  top: 0;
+  top: 0;                /* ensure it starts at the top */
   right: 0;
   bottom: 0;
   width: 280px;
   max-width: 80vw;
+  height: 100vh;         /* add this to cover full height */
   background: var(--bg-secondary);
   border-left: 2px solid var(--accent);
-  z-index: 999;
+  z-index: 1000;         /* slightly higher than before to overlap backdrop */
   padding: 80px 20px 20px;
   overflow-y: auto;
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
 }
-
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;  /* just below the panel */
+}
 .mobile-nav {
   display: flex;
   flex-direction: column;
