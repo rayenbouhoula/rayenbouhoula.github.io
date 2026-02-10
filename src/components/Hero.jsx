@@ -96,7 +96,7 @@ const Hero = () => {
             onClick={handleCVPreview} 
             className="btn btn-secondary"
           >
-            <FaFileAlt /> View My CV
+            View My CV
           </button>
 
           <a 
@@ -155,7 +155,7 @@ const Hero = () => {
                 className="btn btn-primary"
                 onClick={handleCVDownload}
               >
-                📥 Download CV
+               Download CV
               </button>
             </div>
 
