@@ -9,7 +9,7 @@ const MobileMenu = () => {
 
   const toggleMenu = () => {
     playSound('toggle')
-    setIsOpen(prev => !prev)
+    setIsOpen(!isOpen)
   }
 
   const closeMenu = () => {
@@ -17,10 +17,15 @@ const MobileMenu = () => {
     setIsOpen(false)
   }
 
+  const handleLinkClick = () => {
+    playSound('click')
+    setIsOpen(false)
+  }
+
   return (
     <>
-      <button
-        className="mobile-menu-button"
+      <button 
+        className="mobile-menu-button" 
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
@@ -30,31 +35,44 @@ const MobileMenu = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* BACKDROP */}
+            {/* Backdrop - Click to close */}
             <motion.div
               className="mobile-menu-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={closeMenu}
+              onClick={closeMenu}  // ✅ Close when clicking backdrop
             />
-
-            {/* MENU PANEL */}
+            
+            {/* Menu Panel */}
             <motion.div
               className="mobile-menu-panel"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()} // ⭐ IMPORTANT
             >
+              <div className="mobile-menu-header">
+                <h3>Menu</h3>
+                <button 
+                  className="mobile-menu-close" 
+                  onClick={closeMenu}
+                  aria-label="Close menu"
+                >
+                  <FaTimes />
+                </button>
+              </div>
+
               <nav className="mobile-nav">
-                <a href="#home" onClick={closeMenu}>Home</a>
-                <a href="#about" onClick={closeMenu}>About</a>
-                <a href="#skills" onClick={closeMenu}>Skills</a>
-                <a href="#projects" onClick={closeMenu}>Projects</a>
-                <a href="#blog" onClick={closeMenu}>Blog</a>
-                <a href="#contact" onClick={closeMenu}>Contact</a>
+                <a href="#home" onClick={handleLinkClick}>Home</a>
+                <a href="#about" onClick={handleLinkClick}>About</a>
+                <a href="#skills" onClick={handleLinkClick}>Skills</a>
+                <a href="#languages" onClick={handleLinkClick}>Languages</a>
+                <a href="#projects" onClick={handleLinkClick}>Projects</a>
+                <a href="#github-stats" onClick={handleLinkClick}>GitHub Stats</a>
+                <a href="#achievements" onClick={handleLinkClick}>Achievements</a>
+                <a href="#blog" onClick={handleLinkClick}>Blog</a>
+                <a href="#contact" onClick={handleLinkClick}>Contact</a>
               </nav>
             </motion.div>
           </>

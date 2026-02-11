@@ -18,10 +18,19 @@ import MobileMenu from './components/MobileMenu'
 import CustomCursor from './components/CustomCursor'
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa'
 import { useSound } from './context/SoundContext'
-
+import { useEffect } from 'react'
 const AppContent = () => {
-  const { isMuted, toggleMute } = useSound()
-
+const { isMuted, toggleMute } = useSound()
+ useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        document.body.classList.remove('menu-open')
+      }
+    }
+    
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <div className="app">
       <CustomCursor />
