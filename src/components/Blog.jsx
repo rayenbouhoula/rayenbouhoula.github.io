@@ -9,7 +9,7 @@ const blogPosts = [
     date: 'January 15, 2024',
     readTime: '5 min read',
     tags: ['React', 'JavaScript', 'Web Development'],
-    image: '/blog/react.svg',
+    image: 'https://opensource.fb.com/img/projects/react.jpg',
     link:'https://modernreactapplications.hashnode.dev/',
   },
   {
@@ -19,7 +19,8 @@ const blogPosts = [
     date: 'December 20, 2023',
     readTime: '8 min read',
     tags: ['Career', 'Learning', 'Personal'],
-    image: '/blog/journey.svg'
+    image: 'https://www.dice.com/binaries/large/content/gallery/dice/insights/2022/09/shutterstock_2079730714.jpg'
+    link:'https://myjourneyinsoftwaredevelopment.hashnode.dev/',
   },
   {
     id: 3,
@@ -28,7 +29,9 @@ const blogPosts = [
     date: 'November 10, 2023',
     readTime: '6 min read',
     tags: ['Flutter', 'React Native', 'Mobile'],
-    image: '/blog/mobile.svg'
+    image: 'https://www.rishabhsoft.com/wp-content/uploads/2023/12/Banner_-Flutter-vs-React-Native_Dec_2023_Image.jpg',
+    link:'https://fluttervsreactnativee.hashnode.dev/',
+
   }
 ]
 
