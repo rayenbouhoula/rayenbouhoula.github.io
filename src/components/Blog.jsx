@@ -19,7 +19,7 @@ const blogPosts = [
     date: 'December 20, 2023',
     readTime: '8 min read',
     tags: ['Career', 'Learning', 'Personal'],
-    image: 'https://www.dice.com/binaries/large/content/gallery/dice/insights/2022/09/shutterstock_2079730714.jpg'
+    image: 'https://www.dice.com/binaries/large/content/gallery/dice/insights/2022/09/shutterstock_2079730714.jpg',
     link:'https://myjourneyinsoftwaredevelopment.hashnode.dev/',
   },
   {
