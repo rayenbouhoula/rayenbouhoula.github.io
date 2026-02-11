@@ -10,17 +10,9 @@ const Achievements = () => {
   // Using 'myAchievements' to avoid naming conflicts
   const myAchievements = [
     {
-      title: 'Scientific Baccalaureate',
-      organization: 'Ministry of Education (Tunisia)',
-      date: 'June 2023',
-      description: 'Successfully completed Scientific Baccalaureate with focus on mathematics and sciences',
-      icon: <FaGraduationCap />,
-      type: 'education'
-    },
-    {
       title: 'Software Engineering Student',
       organization: 'Must UNIVERSITY - EPI DIGITAL SCHOOL',
-      date: '2023 - Present',
+      date: '2023 -2026',
       description: 'Pursuing degree in Software Engineering with specialization in mobile and web development',
       icon: <FaGraduationCap />,
       type: 'education'
@@ -44,7 +36,7 @@ const Achievements = () => {
     {
       title: 'Full Stack Development',
       organization: 'Self-Taught & Projects in university',
-      date: '2023 - Present',
+      date: '2023 - 2026',
       description: 'Mastered React, Flutter, JavaScript, Python, and modern web technologies through hands-on projects',
       icon: <FaCode />,
       type: 'achievement'
