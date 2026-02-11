@@ -9,8 +9,8 @@ const blogPosts = [
     date: 'January 15, 2024',
     readTime: '5 min read',
     tags: ['React', 'JavaScript', 'Web Development'],
-    image: '/blog/react.svg',
-    link: 'https://modernreactapplications.hashnode.dev/'
+    image: '/blog/react.svg'
+    link:'https://modernreactapplications.hashnode.dev/'
   },
   {
     id: 2,
@@ -101,7 +101,7 @@ const Blog = () => {
                     <span key={index} className="blog-tag">{tag}</span>
                   ))}
                 </div>
-
+              </div>
             </motion.article>
           ))}
         </motion.div>
