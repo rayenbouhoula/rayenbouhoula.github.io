@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaClock, FaCalendar, FaArrowRight } from 'react-icons/fa'
+import { useSound } from '../context/SoundContext'
 
 const blogPosts = [
   {
@@ -31,11 +32,12 @@ const blogPosts = [
     tags: ['Flutter', 'React Native', 'Mobile'],
     image: 'https://www.rishabhsoft.com/wp-content/uploads/2023/12/Banner_-Flutter-vs-React-Native_Dec_2023_Image.jpg',
     link:'https://fluttervsreactnativee.hashnode.dev/',
-
   }
 ]
 
 const Blog = () => {
+  const { playSound } = useSound()
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,7 +85,11 @@ const Blog = () => {
               whileHover={{ y: -10 }}
             >
               <div className="blog-image">
-                <div className="blog-placeholder">📝</div>
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  loading="lazy"
+                />
               </div>
               
               <div className="blog-content">
@@ -109,6 +115,7 @@ const Blog = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="blog-link"
+                  onClick={() => playSound('click')}
                 >
                   Read More <FaArrowRight />
                 </a>
