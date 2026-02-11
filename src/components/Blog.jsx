@@ -9,8 +9,8 @@ const blogPosts = [
     date: 'January 15, 2024',
     readTime: '5 min read',
     tags: ['React', 'JavaScript', 'Web Development'],
-    image: '/blog/react.svg'
-    link:'https://modernreactapplications.hashnode.dev/'
+    image: '/blog/react.svg',
+    link:'https://modernreactapplications.hashnode.dev/',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const blogPosts = [
     date: 'December 20, 2023',
     readTime: '8 min read',
     tags: ['Career', 'Learning', 'Personal'],
-    image: '/blog/journey.svg'
+    image: '/blog/journey.svg',
   },
   {
     id: 3,
