@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { SiFlutter, SiFirebase, SiReact, SiJavascript, SiPython, SiStreamlit } from 'react-icons/si'
 import { useSound } from '../context/SoundContext'
-import { SiReact, SiJavascript, SiLaravel, SiPhp, SiMysql, SiTailwindcss, SiAlpinedotjs } from 'react-icons/si';
+import { SiLaravel, SiPhp, SiMysql, SiTailwindcss, SiAlpinedotjs } from 'react-icons/si';
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
