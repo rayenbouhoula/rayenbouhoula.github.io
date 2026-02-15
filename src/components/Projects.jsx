@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { SiFlutter, SiFirebase, SiReact, SiJavascript, SiPython, SiStreamlit } from 'react-icons/si'
 import { useSound } from '../context/SoundContext'
+import { SiReact, SiJavascript, SiLaravel, SiPhp, SiMysql, SiTailwindcss, SiAlpinedotjs } from 'react-icons/si';
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
@@ -65,6 +66,20 @@ const Projects = () => {
       demo: 'https://rayenbouhoula.github.io/',
       icon: '🌐'
     },
+    {
+      title: 'Tunisie Telecom Coverage Checker',
+      description: 'A bilingual (FR/EN) web application for checking telecommunications service availability across Tunisia. Features real-time coverage verification, interactive maps with all 24 governorates, and admin dashboard.',
+      tech: [
+        { name: 'Laravel', icon: <SiLaravel /> },
+        { name: 'PHP', icon: <SiPhp /> },
+        { name: 'MySQL', icon: <SiMysql /> },
+       { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+       { name: 'Alpine.js', icon: <SiAlpinedotjs /> },
+      ],
+      github: 'https://github.com/rayenbouhoula/telecom-service-checker',
+      demo: 'https://telecom-service-checker-production.up.railway.app',
+      icon: '📡'
+    }
   ]
 
   const containerVariants = {
