@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { FaArrowUp } from 'react-icons/fa'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSound } from '../context/SoundContext'
-import { useSound } from '../context/SoundContext'
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
   const { playSound } = useSound()
